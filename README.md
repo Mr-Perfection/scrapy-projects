@@ -66,3 +66,8 @@ https://scrapinghub.github.io/xpath-playground/
 //p[@id='hola']/following-sibling::node()
 //p[@id='hola']/decendent::node()
 ```
+
+- Run this command to get the output
+```console
+scrapy crawl countries -o covid_cases.[json | csv | xml...]
+```
