@@ -71,3 +71,8 @@ https://scrapinghub.github.io/xpath-playground/
 ```console
 scrapy crawl countries -o covid_cases.[json | csv | xml...]
 ```
+
+### How to get project started?
+- `scrapy startproject [project-name]`
+- `cd [project-name] && scrapy genspider [spider-name] url (without https:// or http://)`
+
