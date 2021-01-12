@@ -1,9 +1,10 @@
 import scrapy
+import logging
 
 
 class SpecialOffersSpider(scrapy.Spider):
     name = 'special_offers'
-    allowed_domains = ['www.cigabuy.com/consumer-electronics-c-56_75-pg-1.html']
+    allowed_domains = ['www.cigabuy.com']
     start_urls = ['https://www.cigabuy.com/consumer-electronics-c-56_75-pg-1.html']
 
     def parse(self, response):
@@ -15,3 +16,8 @@ class SpecialOffersSpider(scrapy.Spider):
                 'discounted_price': item.xpath(".//div[@class='p_box_price cf']/span[1]/text()").get(),
                 'original_price': item.xpath(".//div[@class='p_box_price cf']/span[2]/text()").get(),
             }
+
+        next_page = response.xpath("//a[@class='nextPage']/@href").get()
+        if next_page:
+            yield scrapy.Request(url=next_page, callback=self.parse)
+            
