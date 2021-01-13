@@ -76,3 +76,23 @@ scrapy crawl countries -o covid_cases.[json | csv | xml...]
 - `scrapy startproject [project-name]`
 - `cd [project-name] && scrapy genspider [spider-name] url (without https:// or http://)`
 
+### How to Debug
+https://docs.scrapy.org/en/latest/topics/debug.html
+
+```sh
+scrapy parse --spider=special_offers -c [method_name] [URL] # check scrapy parse -help for more details
+```
+
+inspect_response(response, self)
+
+* Create a runner file, set break points in spider file, and Run > Start Debugging
+```py
+import scrapy
+from scrapy.crawler import CrawlerProcess
+from scrapy.utils.project import get_project_settings
+from worldometers.spiders.countries import CountriesSpider
+
+process = CrawlerProcess(settings=get_project_settings())
+process.crawl(CountriesSpider)
+process.start()
+```
