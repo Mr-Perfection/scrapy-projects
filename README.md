@@ -96,3 +96,8 @@ process = CrawlerProcess(settings=get_project_settings())
 process.crawl(CountriesSpider)
 process.start()
 ```
+
+* Create a CrawlSpider
+```
+scrapy genspider -t crawl best_movies imdb.com
+```
