@@ -101,3 +101,45 @@ process.start()
 ```
 scrapy genspider -t crawl best_movies imdb.com
 ```
+
+### How to use Splash
+```sh
+docker pull scrapinghub/splash
+docker run -it -p 8050:8050 scrapinghub/splash # 8050 tcp port
+# check localhost:8050
+```
+
+Example code for https://duckduckgo.com
+```lua
+function main(splash, args)
+  -- splash:set_user_agent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.16; rv:84.0) Gecko/20100101 Firefox/84.0')
+  --[[headers = {
+    ['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.16; rv:84.0) Gecko/20100101 Firefox/84.0'
+  }
+  splash:set_custom_headers(headers)
+  --]]
+  splash:on_request(function(request)
+      request:set_header('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.16; rv:84.0) Gecko/20100101 Firefox/84.0')
+   end)
+  
+  assert(splash:go(args.url))
+  input_box = assert(splash:select("#search_form_input_homepage"))
+  input_box:focus()
+  input_box:send_text("my user agent")
+  assert(splash:wait(0.5))
+  --[[
+  btn = assert(splash:select("#search_button_homepage"))
+  btn.mouse_click()
+  assert(splash:wait(2))
+ --]]
+  input_box:send_keys("<Enter>")
+  assert(splash:wait(2))
+  splash:set_viewport_full()
+  return {
+    html = splash:html(),
+    har = splash:har(),
+    png = splash:png(),
+  }
+  
+end
+```
