@@ -102,13 +102,19 @@ process.start()
 scrapy genspider -t crawl best_movies imdb.com
 ```
 
-### How to use Splash
+### How to setup Splash
+- Install Docker
 ```sh
 docker pull scrapinghub/splash
 docker run -it -p 8050:8050 scrapinghub/splash # 8050 tcp port
 # check localhost:8050
 ```
 
+```console
+sudo pip install scrapy splash
+```
+
+### Splash Examples
 Example code for https://duckduckgo.com
 ```lua
 function main(splash, args)
@@ -140,6 +146,18 @@ function main(splash, args)
     har = splash:har(),
     png = splash:png(),
   }
-  
+end
+
+function main(splash, args)
+  splash.private_mode_enabled = false 
+  url = args.url
+  assert(splash:go(url))
+  assert(splash:wait(1))
+  rur_tab = assert(splash:select_all(".item"))
+  rur_tab[5]:mouse_click()
+  assert(splash:wait(1))
+  splash:set_viewport_full()
+  return splash:png()
 end
 ```
+
