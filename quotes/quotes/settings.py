@@ -68,7 +68,8 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'quotes.pipelines.MongodbPipeline': 300,
+#    'quotes.pipelines.MongodbPipeline': 300,
+   'quotes.pipelines.SQLlitePipeline': 300,
 }
 
 MONGO_URI = "hello world"

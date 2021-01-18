@@ -169,4 +169,8 @@ conda install pymongo dnspython -y
 ```
 - Configure mongoDB Cloud.
 - Set up the cluster, user permission, and whitelist ip address.
-- Set up web crawler (refer to commit hash)
+- Set up web crawler (refer to the commit 048a475).
+
+**Use Pipeline to store data in SQLlite**
+- Download `SQLite` in VSCode application.
+- Follow the commit 9314604.
