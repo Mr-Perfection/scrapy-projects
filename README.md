@@ -161,3 +161,12 @@ function main(splash, args)
 end
 ```
 
+### Pipelines
+
+**Use Pipeline to store data in MongoDB**
+```console
+conda install pymongo dnspython -y
+```
+- Configure mongoDB Cloud.
+- Set up the cluster, user permission, and whitelist ip address.
+- Set up web crawler (refer to commit hash)
