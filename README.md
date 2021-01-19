@@ -174,3 +174,6 @@ conda install pymongo dnspython -y
 **Use Pipeline to store data in SQLlite**
 - Download `SQLite` in VSCode application.
 - Follow the commit 9314604.
+
+### Scrapy API
+- Use api to get json to create data. Examples are e661ce7 and 8afec5e
